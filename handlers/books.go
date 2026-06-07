@@ -3,7 +3,7 @@ package handlers
 import (
 	"context"
 	"net/http"
-
+      "fmt"  
 	"Go_Lang_Api/db"
 	"Go_Lang_Api/models"
 
@@ -32,7 +32,7 @@ func (h *BookHandler) CreateBook(
 	)
 
 	if err != nil {
-
+     fmt.Println("DB Error:", err)
 		c.JSON(
 			http.StatusInternalServerError,
 			gin.H{

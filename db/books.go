@@ -9,12 +9,7 @@ import (
 )
 
 
-func InsertBook(
-	ctx context.Context,
-	db *pgxpool.Pool,
-	book models.Book,
-) error {
-
+func InsertBook(ctx context.Context,db *pgxpool.Pool,book models.Book,) error {
 	query := `
 	INSERT INTO books(
 		id,
@@ -38,10 +33,7 @@ func InsertBook(
 }
 
 
-func GetAllBooks(
-	ctx context.Context,
-	db *pgxpool.Pool,
-) ([]models.Book,error) {
+func GetAllBooks(ctx context.Context,db *pgxpool.Pool,) ([]models.Book,error) {
 
 	query := `
 	SELECT

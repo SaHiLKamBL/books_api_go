@@ -9,6 +9,21 @@ import (
 )
 
 
+func DeleteBook(ctx context.Context,db *pgxpool.Pool,id int) error{
+	 query :=`
+	     DELETE FROM books
+		 WHERE id=$1
+	 `
+	 _,err :=db.Exec(
+		ctx,
+		query,
+		id,
+	 )
+
+	 return err
+}
+
+
 func InsertBook(ctx context.Context,db *pgxpool.Pool,book models.Book,) error {
 	query := `
 	INSERT INTO books(

@@ -6,10 +6,15 @@ import (
 	"Go_Lang_Api/handlers"
 	"fmt"
 	"os"
+	"github.com/joho/godotenv"
+	"log"
 )
 
 func main() {
-
+             err := godotenv.Load()
+    if err != nil {
+        log.Fatal("Error loading .env file")
+    }
 	dbPool := db.ConnectDB()
 
 	defer dbPool.Close()
@@ -29,6 +34,10 @@ func main() {
 		"/books",
 		bookHandler.CreateBook,
 	)
+	router.DELETE(
+		"/books/:id",bookHandler.DeleteBook,
+	)
+
 	fmt.Println(os.Getenv("DATABASE_URL"))
      fmt.Println("Program Started")
 	router.Run(":8080")

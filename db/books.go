@@ -8,6 +8,19 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
+func CreateUser(ctx context.Context,db *pgxpool.Pool,email string,password string) error{
+	query := `
+		INSERT INTO users (email, password)
+		VALUES ($1, $2)
+	`
+
+	_, err := db.Exec(ctx, query, email, password)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
 
 func DeleteBook(ctx context.Context,db *pgxpool.Pool,id int) error{
 	 query :=`
